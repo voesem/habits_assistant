@@ -34,6 +34,14 @@ class HabitListView(generics.ListAPIView):
             return Habit.objects.filter(user=user.pk)
 
 
+class PublicHabitListView(generics.ListAPIView):
+    """ Список привычек, имеющих признак публичных """
+
+    serializer_class = PublicHabitSerializer
+    queryset = Habit.objects.filter(is_public=True)
+    pagination_class = HabitPaginator
+
+
 class HabitRetrieveView(generics.RetrieveAPIView):
     """ Просмотр привычки """
 
