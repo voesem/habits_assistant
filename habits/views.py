@@ -4,6 +4,7 @@ from habits.models import Habit
 from habits.permissions import IsOwnerOrReadOnly
 from habits.serializers import HabitSerializer, PublicHabitSerializer
 from habits.paginators import HabitPaginator
+from habits.services import create_habit_schedule
 
 
 class HabitCreateView(generics.CreateAPIView):
@@ -12,8 +13,13 @@ class HabitCreateView(generics.CreateAPIView):
     serializer_class = HabitSerializer
 
     def perform_create(self, serializer):
-        """ При создании привычки устанавливается связь с текущим пользователем. """
+        """
+        При создании привычки устанавливается связь с текущим пользователем
+        и создается задача на отправку уведомлений в телеграме.
+        """
         serializer.save(user=self.request.user)
+        habit = serializer.save()
+        create_habit_schedule(habit)
 
 
 class HabitListView(generics.ListAPIView):
