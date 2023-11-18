@@ -22,7 +22,7 @@ def habit_validator(value):
     # Валидация частоты выполнения привычки.
     if value.get('periodicity') is None:
         pass
-    elif value.get('periodicity') < 7:
+    elif value.get('periodicity') > 7:
         raise ValidationError('Нельзя выполнять привычку реже, чем 1 раз в 7 дней.')
 
     # Валидация времени, требуемого для выполнения привычки.
