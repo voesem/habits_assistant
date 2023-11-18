@@ -20,7 +20,7 @@ class Habit(models.Model):
     is_public: признак публичности привычки для общего доступа.
 
     """
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='создатель')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='создатель', **NULLABLE)
     place = models.CharField(max_length=150, verbose_name='место выполнения')
     time = models.TimeField(verbose_name='время выполнения')
     action = models.CharField(max_length=150, verbose_name='действие')
