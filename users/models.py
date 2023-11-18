@@ -30,12 +30,14 @@ class User(AbstractUser):
     email: адрес электронной почты.
     name: имя.
     is_active: признак активности.
+    chat_id: ID чата с телеграм-ботом.
 
     """
     username = None
     email = models.EmailField(unique=True, verbose_name='почта')
     name = models.CharField(max_length=200)
     is_active = models.BooleanField(default=True, verbose_name='признак активности')
+    chat_id = models.CharField(max_length=15, verbose_name='ID чата', **NULLABLE)
 
     objects = CustomUserManager()
 
