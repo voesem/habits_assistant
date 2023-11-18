@@ -19,6 +19,7 @@ redis = "^5.0.1"
 pytelegrambotapi = "^4.14.0"
 django-celery-beat = "^2.5.0"
 eventlet = "^0.33.3"
+drf-yasg = "^1.21.7"
 
 
 [build-system]
