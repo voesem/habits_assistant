@@ -9,6 +9,7 @@ class UserCreateView(generics.CreateAPIView):
     """ Представление регистрации пользователя """
 
     serializer_class = UserSerializer
+    queryset = User.objects.all()
 
 
 class UserListView(generics.ListAPIView):
